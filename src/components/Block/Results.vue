@@ -40,6 +40,23 @@
         class="mb-3"
       />
     </div>
+
+    <div class="mb-1">
+      <b>Number of Participants</b>
+      <span class="float-right">
+       {{numberOfParticipants}}
+      </span>
+    </div>
+
+    <div class="mb-1">
+      <b>Proposal Status</b>
+      <span v-if= "proposalStatus" class="float-right">
+        ✅
+      </span>
+      <span v-if= "!proposalStatus" class="float-right">
+        ❌
+      </span>
+    </div>
     <div v-if="ts >= payload.end">
       <UiButton @click="downloadReport" class="width-full mt-2">
         {{ $t('downloadReport') }}
@@ -68,7 +85,27 @@ export default {
           (a, b) =>
             this.results.totalBalances[b.i] - this.results.totalBalances[a.i]
         );
-    }
+    },
+      numberOfParticipants(){
+          return Object.keys(this.votes).length
+      },
+      minParticipants(){
+          // note first strategy only
+          return this.space.strategies.map(strategy => strategy.params.minParticipants)[0];
+      },
+      yesNoThreshold(){
+          // note first strategy only
+          return this.space.strategies.map(strategy => strategy.params.yesNoThreshold)[0];
+      },
+      validNumberOfChoices(){
+        return true
+      },
+      proposalStatus(){
+         const totalYes =  this.results.totalScores[0] // assumes first choice is yes
+         const total = this.results.totalVotesBalances
+         return (this.numberOfParticipants >= this.minParticipants )&&
+              ( (totalYes / total
+
   },
   methods: {
     async downloadReport() {

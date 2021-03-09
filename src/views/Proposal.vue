@@ -154,6 +154,20 @@
           </div>
         </div>
       </Block>
+      <Block title="Rules to Pass">
+        <div class="mb-1">
+          <b>Min Participants</b>
+          <span class="float-right">{{minParticipants}}</span>
+        </div>
+        <div class="mb-1">
+          <b>Min Balance</b>
+          <span class="float-right">{{minBalance}}</span>
+        </div>
+        <div class="mb-1">
+          <b>Yes/No Threshold</b>
+          <span class="float-right">{{yesNoThreshold}}</span>
+        </div>
+      </Block>
       <BlockResults
         :id="id"
         :space="space"
@@ -231,7 +245,19 @@ export default {
     },
     symbols() {
       return this.space.strategies.map(strategy => strategy.params.symbol);
-    }
+    },
+      minParticipants(){
+          // note first strategy only
+          return this.space.strategies.map(strategy => strategy.params.minParticipants)[0];
+      },
+      minBalance(){
+          // note first strategy only
+          return this.space.strategies.map(strategy => strategy.params.minBalance)[0];
+      },
+      yesNoThreshold(){
+          // note first strategy only
+          return this.space.strategies.map(strategy => strategy.params.yesNoThreshold)[0];
+      }
   },
   watch: {
     'web3.account': async function(val, prev) {

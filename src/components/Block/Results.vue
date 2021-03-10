@@ -104,8 +104,8 @@ export default {
          const totalYes =  this.results.totalScores[0] // assumes first choice is yes
          const total = this.results.totalVotesBalances
          return (this.numberOfParticipants >= this.minParticipants )&&
-              ( (totalYes / total
-
+               (totalYes / total)
+      }
   },
   methods: {
     async downloadReport() {

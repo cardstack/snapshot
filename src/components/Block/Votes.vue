@@ -35,7 +35,7 @@
               .join(' + ')
           "
         >
-          {{ `${_n(vote.balance)} ${_shorten(space.symbol, 'symbol')}` }}
+          {{ `${_n(vote.balance)} ${_shorten("Vote", 'symbol')}` }}
         </span>
         <a
           @click="openReceiptModal(vote)"

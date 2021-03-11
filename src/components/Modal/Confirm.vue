@@ -40,7 +40,7 @@
             "
           >
             {{ _n(totalScore) }}
-            {{ _shorten(space.symbol, 'symbol') }}
+            {{ _shorten("Vote", 'symbol') }}
           </span>
         </div>
       </div>

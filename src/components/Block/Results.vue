@@ -17,7 +17,7 @@
           "
         >
           {{ _n(results.totalBalances[choice.i]) }}
-          {{ _shorten(space.symbol, 'symbol') }}
+          {{ _shorten("Vote", 'symbol') }}
         </span>
         <span
           class="float-right"
